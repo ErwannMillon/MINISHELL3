@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   case_parse.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atrilles <atrilles@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 19:35:18 by atrilles          #+#    #+#             */
-/*   Updated: 2022/07/20 12:36:05 by atrilles         ###   ########.fr       */
+/*   Updated: 2022/07/22 21:48:17 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,13 +71,8 @@ char *cas_chevron_out(char *input, t_command *command, t_env *env)
 	input++;
 	input = forward_space(input);
 	i = 0;
-	while(input[i])
-	{
-		if (maybe_char(input[i]))
-			i++;
-		else 
-			break;
-	}
+	while (maybe_char(input[i]))
+		i++;
 	command->file_out = str_n_dup(input, i);
 	command->fd_file_out = open(command->file_out, O_CREAT | O_WRONLY | O_TRUNC, 0640);
 	if (command->fd_file_out == -1)
