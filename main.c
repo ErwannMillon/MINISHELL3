@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atrilles <atrilles@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 17:40:41 by atrilles          #+#    #+#             */
-/*   Updated: 2022/07/20 12:42:36 by atrilles         ###   ########.fr       */
+/*   Updated: 2022/07/23 00:52:11 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,8 +106,11 @@ int parse(int argc, char **argv, t_env *env, t_command *command)
 	add_history(input);
 	while (input)
 	{
+		printf("input in parse :_%s_", input);
 		input = forward_space(input);
-		if (input[0] == '<')
+		if (str_n_cmp(input, "<<", 2) == 0)
+			input = cas_heredoc(input, command, env);
+		else if (input[0] == '<')
 			input = cas_chevron_in(input, command, env);
 		else if (input[0] == '>')
 			input = cas_chevron_out(input, command, env);

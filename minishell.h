@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atrilles <atrilles@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 17:40:41 by atrilles          #+#    #+#             */
-/*   Updated: 2022/07/20 12:30:27 by atrilles         ###   ########.fr       */
+/*   Updated: 2022/07/22 21:45:41 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 #include <readline/history.h>
 #include <sys/wait.h>
 #include <signal.h>
-# include "libft.h"
+// # include "libft.h"
 
 typedef struct s_command
 {
