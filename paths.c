@@ -6,7 +6,7 @@
 /*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 19:35:18 by atrilles          #+#    #+#             */
-/*   Updated: 2022/07/22 23:51:52 by gmillon          ###   ########.fr       */
+/*   Updated: 2022/08/07 23:57:28 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int arr_len(char **arr)
 
 char	*relative_path(char *cmd)
 {
-	char	buf[1000];
+	char	buf[50];
 	int		i;
 	char	**absolute_path;
 	char	**folders_in_path;

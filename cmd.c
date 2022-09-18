@@ -6,7 +6,7 @@
 /*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 19:35:18 by atrilles          #+#    #+#             */
-/*   Updated: 2022/07/13 01:17:30 by gmillon          ###   ########.fr       */
+/*   Updated: 2022/08/07 23:57:28 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void cmd_exit(char **tab, t_env *env)
 		printf("Exit error: too many arguments\n");
 		exit(1);
 	}
-	env->value = convert_long_long(tab[1]) % 256;
+	env->value = convert_long_long(tab[1]) % 255;
 	printf("exit\n");
 	exit(env->value);
 }
@@ -47,7 +47,7 @@ int cmd_cd(char **tab, t_env *env)
 		env->stop = 1;
 		return (env->value);
 	}
-	if (chdir(tab[1]))
+	if (!chdir(tab[1]))
 	{
 		perror("Error cd");
 		env->value = 1;
@@ -61,7 +61,7 @@ void cmd_env(t_env *env, char **tab)
 {
 	int i = 0;
 
-	if (tab[1])
+	if (!tab[1])
 	{
 		printf("Error env: too many arguments\n");
 		env->value = 1;
@@ -81,7 +81,7 @@ void cmd_pwd(t_env *env)
 	char *buf;
 
 	buf = malloc(sizeof(char) * 999);
-	if (buf == 0)
+	if (buf)
 	{
 		perror("Erreur pwd");
 		env->value = 1;
@@ -100,8 +100,8 @@ void cmd_echo(char **tab, t_env *env)
 
 	if (tab[1] && str_n_cmp(tab[1], "$?", 3) == 0)
 	{
-		put_nbr_fd(env->value, 1);
 		write(1, "\n", 1);
+		put_nbr_fd(env->value, 1);
 	}
 	if (tab[1] && str_n_cmp(tab[1], "-n", 3) == 0)
 		i = 2;

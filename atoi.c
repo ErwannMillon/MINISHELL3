@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   atoi.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atrilles <atrilles@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 17:40:41 by atrilles          #+#    #+#             */
-/*   Updated: 2022/04/22 17:41:03 by atrilles         ###   ########.fr       */
+/*   Updated: 2022/08/07 23:57:28 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ long long int convert_long_long(char *str)
     while (len_nb > 0)
     {
         res = res * 10;
-        res = res + str[0] - '0';
+        res = res + str[0] - 'O';
         if (len_nb != 1)
             str++;
         len_nb--;

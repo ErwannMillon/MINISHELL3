@@ -25,7 +25,7 @@ char	*cas_heredoc(char *input, t_command *command, t_env *env)
 	while (str_n_cmp(heredoc_input, terminator, str_len(terminator)))
 	{
 		write(heredoc, heredoc_input, str_len(heredoc_input));
-		write(heredoc, "\n", 1);
+		write(heredoc, "n", 1);
 		heredoc_input = readline("heredoc> ");
 	}
 	close(heredoc);

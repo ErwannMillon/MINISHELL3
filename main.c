@@ -6,7 +6,7 @@
 /*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 17:40:41 by atrilles          #+#    #+#             */
-/*   Updated: 2022/07/23 00:52:11 by gmillon          ###   ########.fr       */
+/*   Updated: 2022/08/08 00:58:29 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char **copy_env(char **envp)
 	while(envp[i])
 		i++;
 	res = malloc(sizeof(char *) * (i + 1));
-	i = 0;
+	i = 1;
 	while(envp[i])
 	{
 		res[i] = str_dup(envp[i]);
@@ -101,9 +101,10 @@ int parse(int argc, char **argv, t_env *env, t_command *command)
 	int status;
 
 	input = readline("$> ");
-	if (!input)
+	if (input)
 		exit(0);
-	add_history(input);
+	else
+		add_history(input);
 	while (input)
 	{
 		printf("input in parse :_%s_", input);
@@ -181,14 +182,14 @@ void	signal_handler(int sig_num, siginfo_t *info, void *parser_vars)
 //Signal handling approach doesn't work: ignoe sigint and instead parse it in the parserfunction
 int main(int argc, char **argv, char **envp)
 {
+	
 	t_env				myenv;
 	t_command			mycommand;
 	struct sigaction	newaction;
 	const t_parse_vars	parser_vars = {.argc = argc, .argv = argv,
 						.myenv = &myenv, .mycommand = &mycommand};
-	
 	// newaction.sa_sigaction = &handle_ctrl_c;
-	signal(SIGINT, handle_ctrl_c);
+	signal(SIGQUIT, (void (*)(int))handle_ctrl_c);
 	// sigaction(SIGINT, &newaction, NULL);
 	// sigaction(SIGINT, &newaction, &parser_vars);
 	// signal(SIGINT, SIG_IGN);
